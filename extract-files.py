@@ -63,6 +63,9 @@ lib_fixups: lib_fixups_user_type = {
 
 
 blob_fixups: blob_fixups_user_type = {
+    'system_ext/etc/permissions/moto-telephony.xml': blob_fixup().regex_replace(
+        '/system/', '/system_ext/'
+    ),
     ('vendor/bin/hw/android.hardware.security.keymint-service-qti', 'vendor/lib64/libqtikeymint.so'): blob_fixup()
         .add_needed('android.hardware.security.rkp-V1-ndk.so')
         .replace_needed(
