@@ -129,6 +129,9 @@ ro.vendor.bluetooth.csip_qti=true
 # Camera
 camera.disable_zsl_mode=1
 
+# CNE
+persist.vendor.cne.feature=1
+
 # Crypto
 ro.crypto.metadata_init_delete_all_keys.enabled=false
 ro.hardware.keystore_desede=true
