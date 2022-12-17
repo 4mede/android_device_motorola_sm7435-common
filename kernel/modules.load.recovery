@@ -237,3 +237,9 @@ touchscreen_mmi.ko
 gpio_keys.ko
 chipone_tddi_v3_mmi.ko
 ilitek_v4_mmi.ko
+spf_core_dlkm.ko
+gpr_dlkm.ko
+snd_event_dlkm.ko
+q6_notifier_dlkm.ko
+q6_pdr_dlkm.ko
+adsp_loader_dlkm.ko
