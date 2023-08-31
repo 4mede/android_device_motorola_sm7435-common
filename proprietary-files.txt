@@ -656,7 +656,6 @@ vendor/lib64/libqmi_encdec.so
 vendor/lib64/libqmi_legacy.so
 vendor/lib64/libqmimotext.so
 vendor/lib64/libqmiservices.so
-vendor/lib64/libsubsystem_control.so
 
 # QSPM
 system_ext/bin/qspmsvc
@@ -1021,6 +1020,12 @@ vendor/bin/vendor.qti.hardware.soter@1.0-provision
 vendor/etc/init/vendor.qti.hardware.soter@1.0-service.rc
 vendor/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.soter@1.0.so
+
+# SSR
+vendor/bin/ssr_diag
+vendor/bin/ssr_setup
+vendor/bin/subsystem_ramdump
+vendor/lib64/libsubsystem_control.so
 
 # Thermal engine
 vendor/bin/thermal-engine-v2
