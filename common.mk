@@ -113,5 +113,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fastbootd
 
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health-service.qti \
+    android.hardware.health-service.qti_recovery
+
 # Inherit from vendor blobs
 $(call inherit-product, vendor/motorola/sm7435-common/sm7435-common-vendor.mk)
