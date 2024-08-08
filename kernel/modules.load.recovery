@@ -228,3 +228,10 @@ sync_fence.ko
 msm-mmrm.ko
 smcinvoke_dlkm.ko
 qseecom_dlkm.ko
+goodix_brl_mmi.ko
+mmi_annotate.ko
+mmi_info.ko
+mmi_relay.ko
+sensors_class.ko
+touchscreen_mmi.ko
+gpio_keys.ko
