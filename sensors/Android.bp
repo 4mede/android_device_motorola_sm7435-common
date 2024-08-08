@@ -7,6 +7,7 @@
 cc_library_shared {
     name: "sensors.moto_sm7435",
     defaults: ["hidl_defaults"],
+    init_rc: ["sensors.moto_sm7435.rc"],
     srcs: [
         "Sensor.cpp",
         "SensorsSubHal.cpp",
