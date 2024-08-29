@@ -391,7 +391,6 @@ vendor/lib64/liblocation_api.so
 vendor/lib64/liblocation_api_msg.so
 vendor/lib64/liblocation_client_api.so
 vendor/lib64/liblocation_integration_api.so
-vendor/lib64/liblocation_qesdk.so
 vendor/lib64/liblocationservice.so
 vendor/lib64/liblocationservice_glue.so
 vendor/lib64/liblocdiagiface.so
@@ -602,22 +601,6 @@ vendor/lib64/vendor.qti.qccvndhal_aidl-halimpl.so
 # QCV
 vendor/etc/init/init.qti.qcv.rc
 
-# QESDK
-vendor/bin/qesdk-manager
-vendor/etc/init/qesdk-manager.rc
-vendor/etc/seccomp_policy/qesdk.policy
-vendor/etc/vintf/manifest/qesdk-manager.xml
-vendor/lib64/libqesdk2_0.so
-vendor/lib64/libqesdk_manager.so
-vendor/lib64/libqesdoem_query_sys.so
-vendor/lib64/vendor.qti.qesdhal-impl.so
-vendor/lib64/vendor.qti.qesdhal@1.0.so
-vendor/lib64/vendor.qti.qesdhal@1.1.so
-vendor/lib64/vendor.qti.qesdhal@1.2.so
-vendor/lib64/vendor.qti.qesdhal@1.3.so
-vendor/lib64/vendor.qti.qesdhalaidl-V2-ndk.so
-vendor/lib64/vendor.qti.qesdsys-V4-ndk.so
-
 # QMI
 system/etc/permissions/privapp-permissions-qti.xml
 system/etc/sysconfig/qti_whitelist.xml
@@ -821,8 +804,6 @@ vendor/lib64/libqcrildatactl.so
 vendor/lib64/libqcrildataqos.so
 vendor/lib64/libqdi.so
 vendor/lib64/libqdpr.so
-vendor/lib64/libqms.so
-vendor/lib64/libqms_client.so
 vendor/lib64/libril-db.so
 vendor/lib64/libril-legacy.so
 vendor/lib64/libril-qc-ltedirectdisc.so
