@@ -405,7 +405,7 @@ DEVICE_FRAMEWORK_MANIFEST_FILE += $(COMMON_PATH)/configs/vintf/framework_manifes
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     hardware/motorola/vintf/device_framework_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
-DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
+DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix_aidl.xml
 DEVICE_MANIFEST_SKUS := parrot
 DEVICE_MANIFEST_PARROT_FILES += \
     $(COMMON_PATH)/configs/vintf/manifest_parrot.xml
