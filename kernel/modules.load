@@ -119,7 +119,6 @@ pm8941-pwrkey.ko
 qpnp-power-on.ko
 qcom-hv-haptics.ko
 i2c-msm-geni.ko
-i2c-dev.ko
 qcom_ipc_lite.ko
 synx-driver.ko
 qcom-pon.ko
