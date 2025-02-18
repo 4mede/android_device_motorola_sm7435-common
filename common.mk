@@ -240,6 +240,10 @@ endif
 ifeq ($(TARGET_USES_ST_NFC),true)
   PRODUCT_PACKAGES += \
       android.hardware.nfc-service.st
+  PRODUCT_SYSTEM_PROPERTIES += \
+    persist.nfc_cfg.config_file_name=libnfc-nci-st.conf
+  PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.nfc.st.multisim_fw_config=true
 endif
 
 # Native libraries
