@@ -140,8 +140,6 @@ TARGET_KERNEL_EXT_MODULES += \
     motorola/drivers/misc/stk501xx \
     motorola/drivers/misc/mmi_stow \
     motorola/drivers/mmi_relay \
-    motorola/drivers/moto_f_mass_storage \
-    motorola/drivers/moto_mmap_fault \
     motorola/drivers/moto_netopt/con_dfpar \
     motorola/drivers/misc/hall \
     motorola/drivers/misc/mmi_sys_temp \
@@ -159,8 +157,7 @@ TARGET_KERNEL_EXT_MODULES += \
     motorola/drivers/input/misc/ets_bix_mmi \
     motorola/drivers/input/misc/fpc_fps_mmi \
     motorola/drivers/input/misc/goodix_fod_mmi \
-    motorola/drivers/moto_mm \
-    motorola/drivers/moto_swap \
+    motorola/drivers/input/misc/rbs_fod_mmi \
     motorola/drivers/nfc/st21nfc \
     motorola/drivers/wlan_antenna
 

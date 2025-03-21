@@ -245,7 +245,6 @@ mmi_annotate.ko
 mmi_info.ko
 bm_adsp_ulog.ko
 mmi_charger.ko
-moto_f_mass_storage.ko
 st21nfc.ko
 mmi_relay.ko
 sensors_class.ko
@@ -255,7 +254,6 @@ qpnp_adaptive_charge.ko
 bq27426_fg_mmi.ko
 sgm4154x_charger_lite.ko
 mmi_sys_temp.ko
-moto_mmap_fault.ko
 goodix_brl_mmi.ko
 bu520xx_pen.ko
 hall_pen.ko
@@ -275,9 +273,6 @@ mmi_stow.ko
 fpc1020_mmi.ko
 goodix_fod_mmi.ko
 anc_fps_mmi.ko
-moto_mmap_fault.ko
-moto_mm.ko
-moto_swap.ko
 moto_sched.ko
 con_dfpar.ko
 gpio_keys.ko
