@@ -141,14 +141,12 @@ TARGET_KERNEL_EXT_MODULES += \
     motorola/drivers/misc/mmi_stow \
     motorola/drivers/mmi_relay \
     motorola/drivers/moto_f_mass_storage \
-    motorola/drivers/moto_f_usbnet \
     motorola/drivers/moto_mmap_fault \
     motorola/drivers/moto_netopt/con_dfpar \
     motorola/drivers/misc/hall \
     motorola/drivers/misc/mmi_sys_temp \
     motorola/drivers/misc/pen \
     motorola/drivers/misc/sx937x \
-    motorola/drivers/watchdogtest \
     motorola/drivers/regulator/dio8015 \
     motorola/drivers/regulator/wl2864c \
     motorola/drivers/regulator/wl2866d \
