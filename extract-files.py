@@ -33,6 +33,8 @@ libs_add_vendor_suffix = (
     'com.qualcomm.qti.dpm.api@1.0',
     'vendor.qti.ImsRtpService-V1-ndk',
     'vendor.qti.diaghal-V1-ndk',
+    'vendor.qti.hardware.fm-V1-ndk',
+    'vendor.qti.hardware.fm@1.0',
     'vendor.qti.hardware.dpmaidlservice-V1-ndk',
     'vendor.qti.qccsyshal_aidl-V1-ndk',
     'vendor.qti.qccvndhal_aidl-V1-ndk',
@@ -106,6 +108,10 @@ module = ExtractUtilsModule(
     blob_fixups=blob_fixups,
     lib_fixups=lib_fixups,
     namespace_imports=namespace_imports,
+)
+
+module.add_proprietary_file('proprietary-files-fm.txt').add_copy_files_guard(
+    'TARGET_HAS_FM', 'true'
 )
 
 if __name__ == '__main__':

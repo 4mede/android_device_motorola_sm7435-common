@@ -87,7 +87,6 @@ vendor/lib64/libbtnv.so|c002576d44dc559b688bf1d78c5bf627720b4875
 vendor/lib64/libsoc_helper.so|fe54074bf6d9e37cd2c8c076a43e74f09526ba8a
 vendor/lib64/vendor.qti.hardware.bluetooth_sar-V1-ndk.so|50c9ea0a88b168727957fb88e682c7a2afaed779
 vendor/lib64/vendor.qti.hardware.bttpi-V3-ndk.so|856786a9216b9679604906cbc3875dc2f0f64660
-vendor/lib64/vendor.qti.hardware.fm-V1-ndk.so|2f383fde083013a9597872d4cae9ac827b088cf8
 
 # Bluetooth (A2DP) - from pdx257 72.1.A.2.127
 vendor/lib64/hw/android.hardware.bluetooth.audio-impl-qti.so|f7493d5079e037f101e5b6499b0d039b71536394
@@ -332,7 +331,8 @@ vendor/lib64/libfastcvopt.so
 
 # FM
 vendor/lib64/hw/vendor.qti.hardware.fm-impl.so
-vendor/lib64/vendor.qti.hardware.fm@1.0.so
+vendor/lib64/vendor.qti.hardware.fm-V1-ndk.so;MODULE_SUFFIX=_vendor
+vendor/lib64/vendor.qti.hardware.fm@1.0.so;MODULE_SUFFIX=_vendor
 
 # Gatekeeper
 vendor/bin/hw/android.hardware.gatekeeper-service-qti
