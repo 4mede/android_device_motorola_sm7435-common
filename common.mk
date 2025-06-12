@@ -265,13 +265,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries-qti.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries-qti.txt
 
 # Overlay
-PRODUCT_ENFORCE_RRO_TARGETS := *
-
-DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-lineage
-
 PRODUCT_PACKAGES += \
+    DialerResCommon \
     FrameworksResCommon \
+    LineageSdkCommon \
     SettingsCommon \
     SystemUIResCommon \
     TelephonyResCommon \
