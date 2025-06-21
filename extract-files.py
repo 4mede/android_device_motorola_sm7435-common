@@ -40,6 +40,10 @@ libs_add_vendor_suffix = (
     'vendor.qti.qccvndhal_aidl-V1-ndk',
 )
 
+libs_remove = (
+    'libaudioserviceexampleimpl',
+)
+
 def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
     if partition != 'vendor':
         return None
@@ -50,6 +54,7 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     libs_add_vendor_suffix: lib_fixup_vendor_suffix,
+    libs_remove: lib_fixup_remove,
 }
 
 
