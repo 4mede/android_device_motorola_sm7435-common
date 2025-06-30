@@ -109,5 +109,9 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.composer-service \
     vendor.qti.hardware.display.demura-service
 
+# Fastboot
+PRODUCT_PACKAGES += \
+    fastbootd
+
 # Inherit from vendor blobs
 $(call inherit-product, vendor/motorola/sm7435-common/sm7435-common-vendor.mk)
