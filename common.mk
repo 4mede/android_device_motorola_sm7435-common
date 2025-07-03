@@ -208,6 +208,11 @@ ifeq ($(TARGET_USES_ST_NFC),true)
       android.hardware.secure_element@1.2-service-gto
 endif
 
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH) \
+    hardware/motorola
+
 # Telephony
 PRODUCT_PACKAGES += \
     extphonelib \
