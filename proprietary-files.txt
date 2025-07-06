@@ -2,11 +2,6 @@
 ## are from Moto G75 (15 V1UQS35H.103-16-5 1119c-0c79b).
 ## variant: RETAIL
 
-# Current blobs with ELF checks disabled:
-# libqtigefar depends on libar-pal, which is a gnu makefile target
-# libmcs depends on libagm, libar-acdb, libats, liblx-osal, which are gnu makefile targets
-# libqc2audio_hwaudiocodec depends on libpalclient, which is a gnu makefile target
-
 # ADSP
 vendor/bin/adsprpcd
 vendor/bin/loadalgo
@@ -57,9 +52,9 @@ vendor/lib64/libadsprpc.so
 vendor/lib64/libaualgo_foundation.so
 vendor/lib64/libaudio_log_utils.so
 vendor/lib64/libdapparamstorage.so
-vendor/lib64/libmcs.so;DISABLE_CHECKELF
+vendor/lib64/libmcs.so
 vendor/lib64/libpal_net_if.so
-vendor/lib64/libqtigefar.so;DISABLE_CHECKELF
+vendor/lib64/libqtigefar.so
 
 # Audio Misc
 vendor/etc/ap_gain.bin
@@ -473,7 +468,7 @@ vendor/lib64/libqc2audio_base.so
 vendor/lib64/libqc2audio_basecodec.so
 vendor/lib64/libqc2audio_core.so
 vendor/lib64/libqc2audio_hooks.so
-vendor/lib64/libqc2audio_hwaudiocodec.so;DISABLE_CHECKELF
+vendor/lib64/libqc2audio_hwaudiocodec.so
 vendor/lib64/libqc2audio_platform.so
 vendor/lib64/libqc2audio_swaudiocodec.so
 vendor/lib64/libqc2audio_utils.so
