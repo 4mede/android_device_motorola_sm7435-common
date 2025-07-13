@@ -189,7 +189,6 @@ ro.frp.pst=/dev/block/bootdevice/by-name/frp
 persist.sys.fuse.passthrough.enable=true
 
 # Graphics
-debug.egl.hw=0
 debug.sf.auto_latch_unsignaled=0
 debug.sf.disable_client_composition_cache=0
 debug.sf.early.app.duration=13666666
@@ -202,7 +201,6 @@ debug.sf.enable_hwc_vds=0
 debug.sf.enable_refresh_rate_restriction_for_app_switch=1
 debug.sf.force_p3_to_srgb_oem=true
 debug.sf.high_speed_scroll_factor=25
-debug.sf.hw=0
 debug.sf.latch_unsignaled=1
 debug.sf.late.app.duration=13666666
 debug.sf.late.sf.duration=12333333
