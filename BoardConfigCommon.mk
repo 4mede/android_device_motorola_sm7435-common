@@ -58,8 +58,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 DEVICE_FRAMEWORK_MANIFEST_FILE += $(COMMON_PATH)/configs/vintf/framework_manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(COMMON_PATH)/configs/vintf/device_framework_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
-    vendor/lineage/config/device_framework_matrix.xml
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_MANIFEST_SKUS := parrot
 DEVICE_MANIFEST_PARROT_FILES += $(COMMON_PATH)/configs/vintf/manifest_parrot.xml
@@ -167,7 +166,6 @@ BOARD_USES_METADATA_PARTITION := true
 # Partitions
 -include vendor/lineage/config/BoardConfigReservedSize.mk
 BOARD_BUILD_VENDOR_RAMDISK_IMAGE := true
-
 
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
