@@ -189,6 +189,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom.zram:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom.zram \
     $(LOCAL_PATH)/rootdir/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
 
 $(foreach f,$(filter-out $(if $(TARGET_USES_ST_NFC),,$(LOCAL_PATH)/rootdir/etc/init/hw/init.vendor.st21nfc.rc),$(wildcard $(LOCAL_PATH)/rootdir/etc/init/hw/*.rc)),\
