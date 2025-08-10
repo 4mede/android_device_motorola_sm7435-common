@@ -71,3 +71,5 @@ elif [ "$soc_id" -eq 475 ] || [ "$soc_id" -eq 499 ] || [ "$soc_id" -eq 497 ] ||
     setprop ro.vendor.qti.soc_name yupik
     setprop ro.vendor.qti.soc_model SM7325
 fi
+
+setprop ro.soc.model ${ro.vendor.qti.soc_model}
