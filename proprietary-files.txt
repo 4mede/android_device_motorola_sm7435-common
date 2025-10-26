@@ -318,7 +318,6 @@ vendor/etc/seccomp_policy/vendor.qti.hardware.dsp.policy
 vendor/lib64/vendor.qti.hardware.dsp@1.0.so
 
 # Euicc
-product/app/EuiccPartnerApp/EuiccPartnerApp.apk;PRESIGNED
 product/etc/permissions/privapp-permissions-com.google.android.euicc.xml
 product/priv-app/EuiccGoogle/EuiccGoogle.apk;PRESIGNED
 
