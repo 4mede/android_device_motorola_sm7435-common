@@ -281,3 +281,4 @@ moto_mm.ko
 moto_swap.ko
 moto_sched.ko
 con_dfpar.ko
+gpio_keys.ko
