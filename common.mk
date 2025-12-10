@@ -60,8 +60,7 @@ PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    sound_trigger.primary.parrot \
-    vendor.qti.hardware.AGMIPC@1.0-service
+    sound_trigger.primary.parrot
 
 PRODUCT_COPY_FILES += \
     hardware/qcom-caf/sm8450/audio/primary-hal/configs/common/codec2/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml \
