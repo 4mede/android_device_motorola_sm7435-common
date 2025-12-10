@@ -324,6 +324,7 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors-service.multihal \
+    sensors.dynamic_sensor_hal \
     sensors.moto_ext
 
 $(foreach sku, parrot ravelin, \
