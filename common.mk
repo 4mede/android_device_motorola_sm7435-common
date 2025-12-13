@@ -297,6 +297,9 @@ PRODUCT_PACKAGES += \
     vendor_fsg_mountpoint \
     vendor_super_fsg_mountpoint \
     vendor_super_modem_mountpoint
+    
+# Partitions
+PRODUCT_BUILD_PVMFW_IMAGE := true
 
 # Power
 PRODUCT_PACKAGES += \
