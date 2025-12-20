@@ -54,9 +54,6 @@ TARGET_MERGE_DTBS_WILDCARD ?= parrot*base
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/configs/config.fs
 
-# GPS
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
-
 # Init Boot
 BOARD_INIT_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
@@ -180,7 +177,6 @@ BOARD_MOT_DP_GROUP_PARTITION_LIST := product system system_dlkm system_ext vendo
 $(foreach p, $(call to-upper, $(BOARD_MOT_DP_GROUP_PARTITION_LIST)), \
     $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := ext4) \
     $(eval TARGET_COPY_OUT_$(p) := $(call to-lower, $(p))))
-
 
 # Platform
 BOARD_USES_QCOM_HARDWARE := true
