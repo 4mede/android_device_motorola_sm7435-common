@@ -22,12 +22,11 @@ from extract_utils.main import (
 namespace_imports = [
     'device/motorola/sm7435-common',
     'hardware/motorola',
-    'hardware/qcom-caf/sm8450',
+    'hardware/qcom-caf/sm8450-6.6',
     'hardware/qcom-caf/wlan',
     'vendor/qcom/opensource/commonsys/display',
     'vendor/qcom/opensource/dataservices',
 ]
-
 
 libs_add_vendor_suffix = (
     'vendor.qti.hardware.qccsyshal@1.0',
