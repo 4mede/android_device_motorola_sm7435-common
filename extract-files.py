@@ -88,6 +88,8 @@ blob_fixups: blob_fixups_user_type = {
        'vendor/etc/media_codecs_ravelin.xml',
     ): blob_fixup()
         .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio|dolby_audio).+\n', ''),
+    'vendor/etc/sensors/hals.conf': blob_fixup():
+        .add_line_if_missing('sensors.moto_sm7435.so'),
 } # fmt: skip
 
 module = ExtractUtilsModule(
