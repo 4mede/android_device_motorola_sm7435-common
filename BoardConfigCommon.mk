@@ -64,8 +64,7 @@ BOARD_KERNEL_CMDLINE += \
     nosoftlockup \
     printk.devkmsg=on \
     firmware_class.path=/vendor/firmware_mnt/image \
-    qcom_geni_serial.con_enabled=0 \
-    androidboot.selinux=permissive
+    qcom_geni_serial.con_enabled=0
 
 BOARD_BOOTCONFIG += \
     androidboot.hardware=qcom \
