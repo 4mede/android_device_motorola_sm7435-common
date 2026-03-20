@@ -44,6 +44,9 @@ TARGET_PROVIDES_LIBAR_PAL := true
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
+# Broken
+BUILD_BROKEN_DUP_RULES := true
+
 # DTB / DTBO
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
@@ -203,8 +206,7 @@ ENABLE_VENDOR_RIL_SERVICE := true
 
 # SELinux
 include device/lineage/sepolicy/libperfmgr/sepolicy.mk
-include device/qcom/sepolicy_vndr/SEPolicy.mk
-include hardware/motorola/sepolicy/qti/SEPolicy.mk
+include device/qcom/sepolicy_vndr/sm8750/SEPolicy.mk
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
