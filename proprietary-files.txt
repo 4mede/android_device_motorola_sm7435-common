@@ -457,6 +457,21 @@ vendor/etc/init/android.hardware.identity-service-qti.rc
 vendor/etc/vintf/manifest/manifest_identity_credential.xml
 vendor/lib64/libqtiidentitycredential.so
 
+# Init
+vendor/bin/init.qcom.class_core.sh
+vendor/bin/init.qcom.post_boot.sh
+vendor/bin/init.qti.write.sh
+
+# Kernel
+vendor/bin/init.kernel.post_boot-parrot.sh
+vendor/bin/init.kernel.post_boot-ravelin.sh
+vendor/bin/init.kernel.post_boot.sh
+vendor/bin/init.qti.kernel.sh
+vendor/bin/system_dlkm_modprobe.sh
+vendor/bin/vendor_modprobe.sh
+vendor/etc/init/hw/init.qti.kernel.rc
+vendor/etc/init/hw/init.qti.kernel.target.rc
+
 # Keymint
 vendor/bin/hw/android.hardware.security.keymint-service-qti
 vendor/etc/init/android.hardware.security.keymint-service-qti.rc
@@ -586,6 +601,9 @@ vendor/lib64/libqcc_sdk.so
 vendor/lib64/vendor.qti.qccsyshal_aidl-V1-ndk.so;MODULE_SUFFIX=_vendor
 vendor/lib64/vendor.qti.qccvndhal_aidl-V1-ndk.so;MODULE_SUFFIX=_vendor
 vendor/lib64/vendor.qti.qccvndhal_aidl-halimpl.so
+
+# QCV
+vendor/etc/init/init.qti.qcv.rc
 
 # QESDK
 vendor/bin/qesdk-manager
