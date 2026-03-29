@@ -59,67 +59,73 @@ BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 4
+BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE += \
-    console=ttynull \
-    nosoftlockup \
-    printk.devkmsg=on \
     firmware_class.path=/vendor/firmware_mnt/image \
-    qcom_geni_serial.con_enabled=0
-
+    printk.devkmsg=on
 BOARD_BOOTCONFIG += \
     androidboot.hardware=qcom \
+    androidboot.hypervisor.protected_vm.supported=true \
     androidboot.load_modules_parallel=true \
     androidboot.memcg=1 \
     androidboot.usbcontroller=a600000.dwc3 \
     androidboot.vendor.qspa=true
-
-BOARD_BOOT_HEADER_VERSION := 4
-BOARD_KERNEL_BASE := 0x00000000
-BOARD_USES_GENERIC_KERNEL_IMAGE := true
+BOARD_BOOTCONFIG += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_RAMDISK_USE_LZ4 := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-
-TARGET_KERNEL_VERSION := 6.6
-TARGET_KERNEL_NO_GCC := true
+BOARD_RAMDISK_USE_LZ4 := true
+BOARD_USES_GENERIC_KERNEL_IMAGE := true
 TARGET_KERNEL_SOURCE := kernel/motorola/sm7435
 TARGET_KERNEL_CONFIG := \
     gki_defconfig \
-    vendor/parrot_GKI.config \
-    vendor/ext_config/moto-parrot.config \
-    vendor/ext_config/moto-parrot-$(PRODUCT_DEVICE).config
-
-# Kernel Modules
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load))
-BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(TARGET_KERNEL_SOURCE)/modules.vendor_blocklist.msm.parrot
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load.vendor_boot))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(TARGET_KERNEL_SOURCE)/modules.vendor_blocklist.msm.parrot
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load.recovery))
-BOOT_KERNEL_MODULES := $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD)
+    vendor/parrot_perf.config \
+    vendor/ext_config/moto-parrot.config
+TARGET_KERNEL_VERSION := 6.6
 
 TARGET_KERNEL_EXT_MODULE_ROOT := kernel/motorola/sm7435-modules
 
+# Kernel Modules
+BOARD_SYSTEM_KERNEL_MODULES_BLOCKLIST_FILE := $(TARGET_KERNEL_SOURCE)/modules.systemdlkm_blocklist.msm.parrot
+BOARD_SYSTEM_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load.system_dlkm))
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load))
+BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(TARGET_KERNEL_SOURCE)/modules.vendor_blocklist.msm.parrot
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load.vendor_boot))
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE)
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load.recovery))
+BOOT_KERNEL_MODULES := $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD)
+SYSTEM_KERNEL_MODULES := $(BOARD_SYSTEM_KERNEL_MODULES_LOAD)
+
 TARGET_KERNEL_EXT_MODULES := \
     qcom/opensource/mmrm-driver \
+    qcom/opensource/mm-drivers/msm_ext_display \
+    qcom/opensource/mm-drivers/sync_fence \
     qcom/opensource/audio-kernel \
+    qcom/opensource/securemsm-kernel \
+    qcom/opensource/synx-kernel \
     qcom/opensource/camera-kernel \
-    qcom/opensource/cvp-kernel \
+    qcom/opensource/data-kernel/drivers/smem-mailbox \
+    qcom/opensource/datarmnet-ext/mem \
     qcom/opensource/dataipa/drivers/platform/msm \
     qcom/opensource/datarmnet/core \
     qcom/opensource/datarmnet-ext/aps \
     qcom/opensource/datarmnet-ext/offload \
-    qcom/opensource/datarmnet-ext/shs \
     qcom/opensource/datarmnet-ext/perf \
     qcom/opensource/datarmnet-ext/perf_tether \
     qcom/opensource/datarmnet-ext/sch \
+    qcom/opensource/datarmnet-ext/shs \
     qcom/opensource/datarmnet-ext/wlan \
     qcom/opensource/display-drivers/msm \
-    qcom/opensource/eva-kernel \
+    qcom/opensource/dsp-kernel \
+    qcom/opensource/graphics-kernel \
+    qcom/opensource/spu-kernel \
     qcom/opensource/video-driver \
+    qcom/opensource/wlan/platform \
     qcom/opensource/wlan/qcacld-3.0/.adrastea \
-    qcom/opensource/wlan/qcacld-3.0/.qca6490 \
-    qcom/opensource/wlan/qcacld-3.0/.qca6750
+    qcom/opensource/wlan/qcacld-3.0/.qca6750 \
+    qcom/opensource/bt-kernel \
+    nxp/opensource/driver \
+    st/opensource/driver
 
 TARGET_KERNEL_EXT_MODULES += \
     motorola/drivers/mmi_annotate \
@@ -133,28 +139,25 @@ TARGET_KERNEL_EXT_MODULES += \
     motorola/drivers/power/bq27426_fg_mmi \
     motorola/drivers/power/sgm4154x_charger_lite \
     motorola/drivers/misc/utag \
-    motorola/drivers/sensors \
-    motorola/drivers/misc/stk501xx \
     motorola/drivers/misc/mmi_stow \
     motorola/drivers/mmi_relay \
-    motorola/drivers/moto_netopt/con_dfpar \
-    motorola/drivers/misc/hall \
     motorola/drivers/misc/mmi_sys_temp \
-    motorola/drivers/misc/pen \
-    motorola/drivers/misc/sx937x \
     motorola/drivers/regulator/dio8015 \
     motorola/drivers/regulator/wl2864c \
     motorola/drivers/regulator/wl2866d \
     motorola/drivers/regulator/slg5bm43670 \
+    motorola/drivers/sensors \
+    motorola/drivers/misc/awinic/sarsensor \
+    motorola/drivers/misc/stk501xx \
+    motorola/drivers/misc/sx937x \
     motorola/drivers/input/touchscreen/touchscreen_mmi \
     motorola/drivers/input/touchscreen/focaltech_0flash_v2_mmi \
     motorola/drivers/input/touchscreen/ili9882_mmi \
     motorola/drivers/input/touchscreen/goodix_berlin_mmi \
     motorola/drivers/input/misc/anc_fps_mmi \
-    motorola/drivers/input/misc/ets_bix_mmi \
     motorola/drivers/input/misc/fpc_fps_mmi \
     motorola/drivers/input/misc/goodix_fod_mmi \
-    motorola/drivers/input/misc/rbs_fod_mmi \
+    motorola/drivers/moto_netopt/con_dfpar \
     motorola/drivers/nfc/st21nfc \
     motorola/drivers/wlan_antenna
 
