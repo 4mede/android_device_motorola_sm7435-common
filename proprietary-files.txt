@@ -531,9 +531,6 @@ vendor/etc/media_codecs_performance_ravelin.xml
 vendor/etc/media_codecs_ravelin.xml
 vendor/etc/media_profiles_ravelin.xml
 
-# Memory
-vendor/lib64/libvmmem.so
-
 # Neural networks
 vendor/lib64/libQnnChrometraceProfilingReader.so
 vendor/lib64/libQnnCpu.so
