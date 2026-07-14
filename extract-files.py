@@ -63,6 +63,8 @@ blob_fixups: blob_fixups_user_type = {
        'vendor/etc/media_codecs_ravelin.xml',
     ): blob_fixup()
         .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio|dolby_audio).+\n', ''),
+    ('system_ext/etc/seccomp_policy/tcmd.policy', 'vendor/etc/seccomp_policy/qsap_qapeservice.policy', 'vendor/etc/seccomp_policy/syshealthmon.policy'): blob_fixup()
+        .add_line_if_missing('lseek: 1'),
     'vendor/etc/sensors/hals.conf': blob_fixup()
         .add_line_if_missing('sensors.moto_ext.so'),
     'system_ext/priv-app/ims/ims.apk': blob_fixup()
