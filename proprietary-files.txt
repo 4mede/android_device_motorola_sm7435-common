@@ -1,5 +1,5 @@
 ## All proprietary files from this list, unless pinned and noted otherwise,
-## are from Motorola Moto G75 (paros) (16 W1UQ36H.73-28).
+## are from Motorola moto g57 (mumba) (16 W1WAA36.48-12-23).
 ## variant: RETBR
 
 # ADSP
@@ -846,7 +846,7 @@ vendor/lib64/vendor.qti.hardware.radio.common-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.radio.internal.deviceinfo-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.radio.lpa-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.radio.qcrilhook-V1-ndk.so
-vendor/lib64/vendor.qti.hardware.radio.qtiradio-V14-ndk.so
+vendor/lib64/vendor.qti.hardware.radio.qtiradio-V16-ndk.so
 vendor/lib64/vendor.qti.hardware.radio.qtiradioconfig-V6-ndk.so
 vendor/lib64/vendor.qti.syshealthmon-V1-ndk.so
 
