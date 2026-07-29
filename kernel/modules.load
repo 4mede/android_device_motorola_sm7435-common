@@ -287,3 +287,7 @@ fpc1020_mmi.ko
 goodix_fod_mmi.ko
 con_dfpar.ko
 msm_kgsl.ko
+chipone_tddi_v3_mmi.ko
+ilitek_v4_mmi.ko
+awinic_sar.ko
+fm_ctrl.ko

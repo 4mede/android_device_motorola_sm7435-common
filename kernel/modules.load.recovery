@@ -235,3 +235,5 @@ mmi_relay.ko
 sensors_class.ko
 touchscreen_mmi.ko
 gpio_keys.ko
+chipone_tddi_v3_mmi.ko
+ilitek_v4_mmi.ko
