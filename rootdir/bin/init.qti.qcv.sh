@@ -1,7 +1,7 @@
 #! /vendor/bin/sh
 #=============================================================================
-# Copyright (c) 2020, 2021 Qualcomm Technologies, Inc.
-# All Rights Reserved.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# All rights reserved.
 # Confidential and Proprietary - Qualcomm Technologies, Inc.
 #=============================================================================
 
@@ -13,7 +13,8 @@ setprop ro.vendor.qti.soc_id $soc_id
 
 # For chipsets in QCV family, convert soc_id to soc_name
 # and store it in ro.vendor.qti.soc_name.
-if [ "$soc_id" -eq 618 ] || [ "$soc_id" -eq 639 ]; then
+if [ "$soc_id" -eq 618 ] || [ "$soc_id" -eq 639 ] || [ "$soc_id" -eq 705 ] ||
+   [ "$soc_id" -eq 706 ]; then
     setprop ro.vendor.qti.soc_name sun
     # Store chip_id in ro.vendor.qti.soc_model
     setprop ro.vendor.qti.soc_model $chip_id
@@ -22,7 +23,7 @@ elif [ "$soc_id" -eq 655 ] || [ "$soc_id" -eq 681 ] || [ "$soc_id" -eq 694 ]; th
     setprop ro.vendor.qti.soc_name tuna
     setprop ro.vendor.qti.soc_model $chip_id
     setprop ro.vendor.media_performance_class 35
-elif [ "$soc_id" -eq 659 ] || [ "$soc_id" -eq 686 ]; then
+elif [ "$soc_id" -eq 659 ] || [ "$soc_id" -eq 686 ] || [ "$soc_id" -eq 720 ] || [ "$soc_id" -eq 721 ]; then
     setprop ro.vendor.qti.soc_name kera
     setprop ro.vendor.qti.soc_model $chip_id
 elif [ "$soc_id" -eq 507 ] || [ "$soc_id" -eq 565 ]; then
@@ -41,12 +42,15 @@ elif [ "$soc_id" -eq 557 ] || [ "$soc_id" -eq 577 ]; then
 elif [ "$soc_id" -eq 537 ] || [ "$soc_id" -eq 583 ]; then
     setprop ro.vendor.qti.soc_name parrot
     setprop ro.vendor.qti.soc_model SM6450
-elif [ "$soc_id" -eq 663 ]; then
+elif [ "$soc_id" -eq 663 ] || [ "$soc_id" -eq 713 ] || [ "$soc_id" -eq 714 ]; then
     setprop ro.vendor.qti.soc_name parrot
     setprop ro.vendor.qti.soc_model SM6475
 elif [ "$soc_id" -eq 631 ]; then
     setprop ro.vendor.qti.soc_name parrot
     setprop ro.vendor.qti.soc_model SM6450Q
+elif [ "$soc_id" -eq 715 ]; then
+    setprop ro.vendor.qti.soc_name parrot
+    setprop ro.vendor.qti.soc_model SM6435
 elif [ "$soc_id" -eq 613 ] || [ "$soc_id" -eq 638 ]; then
     setprop ro.vendor.qti.soc_name parrot
     setprop ro.vendor.qti.soc_model SM7435
@@ -56,6 +60,10 @@ elif [ "$soc_id" -eq 633 ] || [ "$soc_id" -eq 634 ]; then
 elif [ "$soc_id" -eq 568 ] || [ "$soc_id" -eq 602 ] || [ "$soc_id" -eq 653 ] || [ "$soc_id" -eq 654 ]; then
     setprop ro.vendor.qti.soc_name ravelin
     setprop ro.vendor.qti.soc_model SM4450
+elif [ "$soc_id" -eq 581 ]; then
+    setprop ro.vendor.qti.soc_name ravelin
+    setprop ro.vendor.qti.soc_model QCM4490
+elif [ "$soc_id" -eq 582 ]; then
+    setprop ro.vendor.qti.soc_name ravelin
+    setprop ro.vendor.qti.soc_model QCS4490
 fi
-
-setprop ro.soc.model ${ro.vendor.qti.soc_model}

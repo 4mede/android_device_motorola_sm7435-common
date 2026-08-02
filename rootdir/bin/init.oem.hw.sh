@@ -359,10 +359,6 @@ set_ro_hw_properties_upgrade()
 		utag_value=$(cat $utag_path/ascii)
 		setprop $prop_prefix$utag_name "$utag_value"
 		notice "ro.vendor.hw.$utag_name='$utag_value'"
-
-		if [ "$utag_name" = "dualsim" ] && [ "$utag_value" = "true" ]; then
-			setprop persist.vendor.radio.multisim.config dsds
-		fi
 	done
 }
 
@@ -388,9 +384,6 @@ set_ro_hw_property()
 	utag_value=$(cat $utag_path/ascii)
 	setprop $prop_prefix$utag_name "$utag_value"
 	notice "$prop_prefix$utag_name='$utag_value'"
-	if [ "$utag_name" = "dualsim" ] && [ "$utag_value" = "true" ]; then
-	    setprop persist.vendor.radio.multisim.config dsds
-	fi
 }
 
 set_ro_hw_properties()
@@ -399,6 +392,18 @@ set_ro_hw_properties()
 	for hwtag in $(find $hw_mp -name '.system'); do
 		set_ro_hw_property $hwtag &
 	done
+}
+
+set_ro_vendor_incremental()
+{
+	local vendor_incremental="ro.vendor.build.version.incremental"
+	local vendor_incremental_value
+	local fetch_prop="ro.build.version.incremental"
+        local fetch_value=$(getprop $fetch_prop)
+
+        [ -z "$fetch_value" ] && prefetch_from_file $fetch_prop vendor_incremental_value
+	setprop $vendor_incremental "$vendor_incremental_value"
+        notice "$vendor_incremental='$vendor_incremental_value'"
 }
 
 smart_value()
@@ -735,6 +740,8 @@ if [ "$xml_version" != "$version_fs" ]; then
 	# update procfs version
 	[ -d $hw_mp/$ver_utag ] && $(echo "$xml_version" > $hw_mp/$ver_utag/ascii)
 fi
+
+set_ro_vendor_incremental &
 
 set_ro_hw_properties
 
