@@ -291,3 +291,8 @@ chipone_tddi_v3_mmi.ko
 ilitek_v4_mmi.ko
 awinic_sar.ko
 fm_ctrl.ko
+goodix_brl_mmi.ko
+hall_pen.ko
+rbs_fod_mmi.ko
+schgm-flash.ko
+sx937x_multi.ko

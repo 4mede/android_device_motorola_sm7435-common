@@ -151,8 +151,10 @@ TARGET_KERNEL_EXT_MODULES += \
     motorola/drivers/regulator/slg5bm43670 \
     motorola/drivers/sensors \
     motorola/drivers/misc/awinic/sarsensor \
+    motorola/drivers/misc/hall \
     motorola/drivers/misc/stk501xx \
     motorola/drivers/misc/sx937x \
+    motorola/drivers/misc/sx937x_multi \
     motorola/drivers/input/touchscreen/touchscreen_mmi \
     motorola/drivers/input/touchscreen/focaltech_0flash_v2_mmi \
     motorola/drivers/input/touchscreen/ili9882_mmi \
@@ -160,6 +162,7 @@ TARGET_KERNEL_EXT_MODULES += \
     motorola/drivers/input/misc/anc_fps_mmi \
     motorola/drivers/input/misc/fpc_fps_mmi \
     motorola/drivers/input/misc/goodix_fod_mmi \
+    motorola/drivers/input/misc/rbs_fod_mmi \
     motorola/drivers/moto_netopt/con_dfpar \
     motorola/drivers/nfc/st21nfc \
     motorola/drivers/wlan_antenna
