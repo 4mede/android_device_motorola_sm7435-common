@@ -139,8 +139,6 @@ TARGET_KERNEL_EXT_MODULES += \
     motorola/drivers/power/mmi_charger \
     motorola/drivers/power/qti_glink_charger \
     motorola/drivers/power/qpnp_adaptive_charge \
-    motorola/drivers/power/bq27426_fg_mmi \
-    motorola/drivers/power/sgm4154x_charger_lite \
     motorola/drivers/ese/st54x \
     motorola/drivers/fm \
     motorola/drivers/misc/utag \
@@ -148,9 +146,6 @@ TARGET_KERNEL_EXT_MODULES += \
     motorola/drivers/mmi_relay \
     motorola/drivers/misc/mmi_sys_temp \
     motorola/drivers/regulator/dio8015 \
-    motorola/drivers/regulator/wl2864c \
-    motorola/drivers/regulator/wl2866d \
-    motorola/drivers/regulator/slg5bm43670 \
     motorola/drivers/sensors \
     motorola/drivers/misc/awinic/sarsensor \
     motorola/drivers/misc/hall \
