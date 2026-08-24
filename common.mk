@@ -10,9 +10,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Enforce generic ramdisk allow list
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 
-# Add common definitions for Qualcomm
-$(call inherit-product, hardware/qcom-caf/common/common.mk)
-
 # A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
@@ -77,19 +74,13 @@ PRODUCT_PACKAGES += \
     libmediautils_vendor.vendor \
     libmemunreachable.vendor
 
-AUDIO_HAL_DIR := hardware/qcom-caf/sm8450-6.6/audio/primary-hal
+AUDIO_HAL_DIR := vendor/qcom/opensource/audio-hal/primary-hal
 CONFIG_HAL_SRC_DIR := $(AUDIO_HAL_DIR)/configs/parrot
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
     $(LOCAL_PATH)/configs/audio/audio_module_config_primary.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/audio_module_config_primary.xml \
     $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
-
-PRODUCT_COPY_FILES += \
-    $(CONFIG_HAL_SRC_DIR)/audio_effects_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/audio_effects_config.xml \
-    $(CONFIG_HAL_SRC_DIR)/card-defs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/card-defs.xml \
-    $(CONFIG_HAL_SRC_DIR)/microphone_characteristics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/microphone_characteristics.xml \
-    $(CONFIG_HAL_SRC_DIR)/vendor_audio_interfaces.xml:$(TARGET_COPY_OUT_VENDOR)/etc/vendor_audio_interfaces.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
@@ -141,31 +132,30 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # Display
 PRODUCT_PACKAGES += \
-    init.qti.display_boot.rc \
-    init.qti.display_boot.sh \
-    libfilefinder \
-    mapper.qti \
-    vendor.qti.hardware.display.allocator-service \
-    vendor.qti.hardware.display.composer-service \
-    vendor.qti.hardware.display.demura-service \
-    vendor.qti.hardware.display.snapalloc-impl
+    android.hardware.graphics.composer3-V3-ndk.vendor \
+    vendor.qti.hardware.display.color-V1-ndk \
+    vendor.qti.hardware.display.composer3-V1-ndk \
+    vendor.qti.hardware.display.config-V10-ndk \
+    vendor.qti.hardware.display.config-V11-ndk \
+    vendor.qti.hardware.display.config-V12-ndk \
+    vendor.qti.hardware.display.config-V1-ndk \
+    vendor.qti.hardware.display.config-V2-ndk \
+    vendor.qti.hardware.display.config-V3-ndk \
+    vendor.qti.hardware.display.config-V4-ndk \
+    vendor.qti.hardware.display.config-V5-ndk \
+    vendor.qti.hardware.display.config-V6-ndk \
+    vendor.qti.hardware.display.config-V7-ndk \
+    vendor.qti.hardware.display.config-V8-ndk \
+    vendor.qti.hardware.display.config-V9-ndk \
+    vendor.qti.hardware.display.demura-V1-ndk \
+    vendor.qti.hardware.display.postproc-V1-ndk
 
 PRODUCT_COPY_FILES += \
-    hardware/qcom-caf/sm8450-6.6/display/hal/config/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml
+    hardware/qcom/display/config/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml
 
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
-    
-# Euicc
-ifeq ($(TARGET_HAS_ESIM),true)
-PRODUCT_PACKAGES += \
-    MotoEuicc
-    
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
-    
-endif
 
 # Fastboot
 PRODUCT_PACKAGES += \
@@ -324,7 +314,13 @@ PRODUCT_PACKAGES += \
 # Partitions
 PRODUCT_BUILD_PVMFW_IMAGE := true
 
+# Platform
+BOARD_USES_QCOM_HARDWARE := true
+TARGET_BOARD_PLATFORM := parrot
+
 # Power
+TARGET_PROVIDES_POWERHAL := true
+
 PRODUCT_PACKAGES += \
     android.hardware.power-service.lineage-libperfmgr \
     libqti-perfd-client
@@ -351,7 +347,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.sensors-service.multihal \
     sensors.dynamic_sensor_hal \
-    sensors.moto_ext
+    sensors.motorola
 
 $(foreach sku, parrot ravelin, \
     $(eval PRODUCT_COPY_FILES += \
@@ -373,8 +369,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/motorola \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/lineage/interfaces/power-libperfmgr \
-    hardware/qcom-caf/common/libqti-perfd-client
+    vendor/aospa/interfaces/power-libperfmgr
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -397,9 +392,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     qcrilNrDb_vendor
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.cdma.xml \
@@ -436,34 +428,25 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml
 
-# Vendor service manager
-PRODUCT_PACKAGES += \
-    vndservicemanager
-
 # Verified boot
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml
 
 # Vibrator
-$(call soong_config_set,qti_vibrator,libpalclient_namespace,hardware/qcom-caf/sm8450-6.6)
+$(call soong_config_set,qti_vibrator,libpalclient_namespace,vendor/qcom/opensource/pal)
 $(call soong_config_set_bool,qti_vibrator,use_libpalclient,true)
 
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.vibrator.service
 
 PRODUCT_COPY_FILES += \
-    vendor/qcom/opensource/vibrator/aidl/HapticsPolicy.xml:$(TARGET_COPY_OUT_VENDOR)/etc/HapticsPolicy.xml \
     vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
 # VINTF
-DEVICE_FRAMEWORK_MANIFEST_FILE += $(COMMON_PATH)/configs/vintf/framework_manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
-    hardware/motorola/vintf/device_framework_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
-DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix_aidl.xml
+    hardware/motorola/vintf/device_framework_matrix.xml
 DEVICE_MANIFEST_SKUS := parrot
 DEVICE_MANIFEST_PARROT_FILES += \
-    $(AUDIO_HAL_DIR)/configs/parrot/manifest_audio_qti_services.xml \
     $(COMMON_PATH)/configs/vintf/manifest_parrot.xml
 
 # WiFi

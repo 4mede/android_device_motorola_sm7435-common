@@ -22,12 +22,13 @@ from extract_utils.main import (
 namespace_imports = [
     'device/motorola/sm6450-common',
     'hardware/motorola',
-    'hardware/qcom-caf/sm8450-6.6',
-    'hardware/qcom-caf/wlan',
-    'vendor/qcom/opensource/commonsys/display',
-    'vendor/qcom/opensource/commonsys-intf/display',
-    'vendor/qcom/opensource/dataservices',
+    'hardware/qcom/display',
+    'hardware/qcom/display/gralloc',
+    'hardware/qcom/display/libdebug',
 ]
+
+def lib_fixup_moto_suffix(lib: str, partition: str, *args, **kwargs):
+    return f'{lib}_moto' if partition in ('vendor') else None
 
 libs_add_vendor_suffix = (
     'com.qualcomm.qti.dpm.api@1.0',
@@ -38,6 +39,20 @@ libs_add_vendor_suffix = (
     'vendor.qti.hardware.dpmaidlservice-V1-ndk',
     'vendor.qti.qccsyshal_aidl-V1-ndk',
     'vendor.qti.qccvndhal_aidl-V1-ndk',
+),
+
+lib_fixups: lib_fixups_user_type = {
+    **lib_fixups,
+    (
+        'audio.primary.default',
+        'libsdm-color',
+        'libsdm-disp-vndapis',
+        'libsdmextension',
+    ): lib_fixup_moto_suffix,
+}
+
+libs_remove = (
+    'libqsap_sdk',
 )
 
 def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
@@ -50,12 +65,13 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     libs_add_vendor_suffix: lib_fixup_vendor_suffix,
+    libs_remove: lib_fixup_remove,
 }
 
 blob_fixups: blob_fixups_user_type = {
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .add_needed('libcodec2_shim.so')
-        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
+        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V6-ndk.so'),
     'system_ext/etc/permissions/moto-telephony.xml': blob_fixup()
         .regex_replace('/system/', '/system_ext/'),
     (
@@ -67,12 +83,6 @@ blob_fixups: blob_fixups_user_type = {
         .add_line_if_missing('sensors.moto_ext.so'),
     'system_ext/priv-app/ims/ims.apk': blob_fixup()
         .apktool_patch('ims-patches'),
-    (
-        'vendor/lib64/hw/libaudioeffecthal.qti.so',
-        'vendor/lib64/libdpps.so',
-        'vendor/lib64/libsnapdragoncolor-manager.so',
-    ): blob_fixup()
-        .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
     (
         'vendor/bin/qguard',
         'vendor/lib64/libqcodec2_utils.so',
@@ -95,6 +105,14 @@ blob_fixups: blob_fixups_user_type = {
         .add_line_if_missing('sched_get_priority_max: 1'),
     'vendor/lib64/android.hardware.bluetooth.audio-impl_prebuilt.so': blob_fixup()
         .replace_needed('libbluetooth_audio_session_aidl.so', 'libbluetooth_audio_session_aidl_prebuilt.so'),
+    (
+        'vendor/lib64/hw/android.hardware.bluetooth.audio_sw.so',
+        'vendor/lib64/soundfx/libqcompostprocbundle.so',
+        'vendor/lib64/soundfx/libqcomvisualizer.so',
+        'vendor/lib64/soundfx/libqcomvoiceprocessing.so',
+        'vendor/lib64/soundfx/libvolumelistener.so',
+    ): blob_fixup()
+        .replace_needed('android.media.audio.common.types-V4-ndk.so', 'android.media.audio.common.types-V3-ndk.so'),
 } # fmt: skip
 
 module = ExtractUtilsModule(
@@ -107,10 +125,6 @@ module = ExtractUtilsModule(
 
 module.add_proprietary_file('proprietary-files-fm.txt').add_copy_files_guard(
     'TARGET_HAS_FM', 'true'
-)
-
-module.add_proprietary_file('proprietary-files-esim.txt').add_copy_files_guard(
-    'TARGET_HAS_ESIM', 'true'
 )
 
 if __name__ == '__main__':

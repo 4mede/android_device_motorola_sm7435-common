@@ -45,6 +45,10 @@ TARGET_PROVIDES_LIBAR_PAL := true
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
+# Broken
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES  := true
+
 # DTB / DTBO
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
@@ -79,98 +83,13 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_RAMDISK_USE_LZ4 := true
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
-TARGET_KERNEL_SOURCE := kernel/motorola/sm6450
-TARGET_KERNEL_CONFIG := \
-    gki_defconfig \
-    vendor/parrot_perf.config \
-    vendor/ext_config/moto-parrot.config
+TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 TARGET_KERNEL_VERSION := 6.6
-
-TARGET_KERNEL_EXT_MODULE_ROOT := kernel/motorola/sm6450-modules
-
-# Kernel Modules
-BOARD_SYSTEM_KERNEL_MODULES_BLOCKLIST_FILE := $(TARGET_KERNEL_SOURCE)/modules.systemdlkm_blocklist.msm.parrot
-BOARD_SYSTEM_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load.system_dlkm))
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load))
-BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(TARGET_KERNEL_SOURCE)/modules.vendor_blocklist.msm.parrot
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load.vendor_boot))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE)
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/kernel/modules.load.recovery))
-BOOT_KERNEL_MODULES := $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD)
-SYSTEM_KERNEL_MODULES := $(BOARD_SYSTEM_KERNEL_MODULES_LOAD)
-
-TARGET_KERNEL_EXT_MODULES := \
-    qcom/opensource/mmrm-driver \
-    qcom/opensource/mm-drivers/msm_ext_display \
-    qcom/opensource/mm-drivers/sync_fence \
-    qcom/opensource/audio-kernel \
-    qcom/opensource/securemsm-kernel \
-    qcom/opensource/synx-kernel \
-    qcom/opensource/camera-kernel \
-    qcom/opensource/data-kernel/drivers/smem-mailbox \
-    qcom/opensource/datarmnet-ext/mem \
-    qcom/opensource/dataipa/drivers/platform/msm \
-    qcom/opensource/datarmnet/core \
-    qcom/opensource/datarmnet-ext/aps \
-    qcom/opensource/datarmnet-ext/offload \
-    qcom/opensource/datarmnet-ext/perf \
-    qcom/opensource/datarmnet-ext/perf_tether \
-    qcom/opensource/datarmnet-ext/sch \
-    qcom/opensource/datarmnet-ext/shs \
-    qcom/opensource/datarmnet-ext/wlan \
-    qcom/opensource/display-drivers/msm \
-    qcom/opensource/dsp-kernel \
-    qcom/opensource/graphics-kernel \
-    qcom/opensource/spu-kernel \
-    qcom/opensource/video-driver \
-    qcom/opensource/wlan/platform \
-    qcom/opensource/wlan/qcacld-3.0/.adrastea \
-    qcom/opensource/wlan/qcacld-3.0/.qca6750 \
-    qcom/opensource/bt-kernel \
-    nxp/opensource/driver \
-    st/opensource/driver
-
-TARGET_KERNEL_EXT_MODULES += \
-    motorola/drivers/mmi_annotate \
-    motorola/drivers/mmi_info \
-    motorola/drivers/backlight/aw99703 \
-    motorola/drivers/backlight/ktd3136 \
-    motorola/drivers/power/bm_adsp_ulog \
-    motorola/drivers/power/mmi_charger \
-    motorola/drivers/power/qti_glink_charger \
-    motorola/drivers/power/qpnp_adaptive_charge \
-    motorola/drivers/ese/st54x \
-    motorola/drivers/fm \
-    motorola/drivers/misc/utag \
-    motorola/drivers/misc/mmi_stow \
-    motorola/drivers/mmi_relay \
-    motorola/drivers/misc/mmi_sys_temp \
-    motorola/drivers/regulator/dio8015 \
-    motorola/drivers/sensors \
-    motorola/drivers/misc/awinic/sarsensor \
-    motorola/drivers/misc/hall \
-    motorola/drivers/misc/stk501xx \
-    motorola/drivers/misc/sx937x \
-    motorola/drivers/misc/sx937x_multi \
-    motorola/drivers/input/touchscreen/touchscreen_mmi \
-    motorola/drivers/input/touchscreen/chipone_tddi_v3_mmi \
-    motorola/drivers/input/touchscreen/focaltech_0flash_v2_mmi \
-    motorola/drivers/input/touchscreen/ili9882_mmi \
-    motorola/drivers/input/touchscreen/ilitek_v4_mmi \
-    motorola/drivers/input/touchscreen/goodix_berlin_mmi \
-    motorola/drivers/input/misc/anc_fps_mmi \
-    motorola/drivers/input/misc/fpc_fps_mmi \
-    motorola/drivers/input/misc/goodix_fod_mmi \
-    motorola/drivers/input/misc/rbs_fod_mmi \
-    motorola/drivers/moto_netopt/con_dfpar \
-    motorola/drivers/nfc/st21nfc \
-    motorola/drivers/wlan_antenna
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
--include vendor/lineage/config/BoardConfigReservedSize.mk
 BOARD_BUILD_VENDOR_RAMDISK_IMAGE := true
 
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 32)
@@ -188,10 +107,6 @@ $(foreach p, $(call to-upper, $(BOARD_MOT_DP_GROUP_PARTITION_LIST)), \
     $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := ext4) \
     $(eval TARGET_COPY_OUT_$(p) := $(call to-lower, $(p))))
 
-# Platform
-BOARD_USES_QCOM_HARDWARE := true
-TARGET_BOARD_PLATFORM := parrot
-
 # Properties
 TARGET_ODM_PROP += $(COMMON_PATH)/configs/properties/odm.prop
 TARGET_PRODUCT_PROP += $(COMMON_PATH)/configs/properties/product.prop
@@ -203,6 +118,10 @@ BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
+
+SOONG_CONFIG_NAMESPACES += ufsbsg
+SOONG_CONFIG_ufsbsg += ufsframework
+SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
@@ -244,9 +163,9 @@ BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_PRIVATE_LIB := //hardware/qcom/wlan/qcwcn/wpa_supplicant_8_lib:lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := //hardware/qcom/wlan/qcwcn/wpa_supplicant_8_lib:lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB_EVENT := "ON"
 WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wlan"
 WIFI_DRIVER_STATE_OFF := "OFF"
