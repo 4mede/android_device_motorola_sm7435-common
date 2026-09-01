@@ -336,6 +336,12 @@ PRODUCT_COPY_FILES += \
 # RFS MSM MPSS symlinks
 PRODUCT_PACKAGES += \
     rfs_msm_mpss_readonly_vendor_fsg_symlink
+    
+# Secure Element
+ifeq ($(TARGET_USES_ST_NFC),true)
+  PRODUCT_PACKAGES += \
+      android.hardware.secure_element-service.thales
+endif
 
 # Security
 PRODUCT_COPY_FILES += \
